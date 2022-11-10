@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+  
+    <!-- Meta tags Obrigatórias -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.3/socket.io.js"></script>
+    <!--<link rel="stylesheet" href="/../viws/estilo.css">-->
+
+    <title>Comentarios</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="/">Restaurante</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Produtos <span class="sr-only">(página atual)</span></a>
+              </li>
+          
+        </ul>
+      </div>
+    </nav>
+
+  <h3>Faça aqui seus comentarios</h3>
+
+  <div class="container">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Restaurante</a></li>
+        <li class="breadcrumb-item"><a href="/produtos">Produtos</a></li>
+        <li class="breadcrumb-item active" aria-current="page">comentarios</li>
+      </ol>
+    </nav>
+  </div>
+  
+    <form id="chat">
+        <input type="text" name="username" placeholder="Digite o Autor dá Mensagem">
+        <div class="AparecerMensagem"></div>
+        <input type="text" name="mensagem" placeholder="Digite a Mensagem">
+        <button type="submit">Enviar</button>
+    </form>
+
+    <script type="text/javascript">
+
+      let socket = io("http://localhost:8080");
+
+        
+      function renderizaMensagems (mensagem){
+          $(".AparecerMensagem")
+          .append('<div class="messagem"><stronng>'+"Autor "+mensagem.autor  === ''?  'Anonimo' : mensagem.autor + '</strong'+ '<br></br>');
+            $(".AparecerMensagem")
+          .append('<div class="messagem"><stronng>'+"Mensagem: "+mensagem.mensagem + '</strong' + '<br></br>');
+        }
+        socket.on("armazenarMensagemsAnteriores" , function (mensagem) {
+          for(mensagem of mensagem)
+          renderizaMensagems(mensagem);
+        });
+
+        socket.on("mensagemglobal" , function(mensagem) {
+          renderizaMensagems(mensagem);
+        });
+
+      $("#chat").submit(function(event){
+        event.preventDefault();
+
+        let nome_Da_Pesoa = $("input[name = username]").val();
+        let mensage_da_pessoa = $("input[name = mensagem]").val();
+        if(mensage_da_pessoa.length > 0)
+        var mensagemObejeto = {
+          autor : nome_Da_Pesoa,
+          mensagem : mensage_da_pessoa,
+          
+        }
+   
+        renderizaMensagems(mensagemObejeto);
+        
+        socket.emit("enviar_mensagem" , mensagemObejeto);
+
+      });
+      
+      
+    </script>
+
+    <style>
+      body{
+        background-color: aqua;
+      }
+      h3{
+        text-align: center;
+      }
+      html, body {
+  height: 100%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#chat {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+input {
+  width: 600px;
+  border: 1px solid #ddd;
+  height: 50px;
+  padding: 0 20px;
+  font-size: 14px;
+}
+
+button {
+  width: 600px;
+  height: 50px;
+  font-size: 14px;
+  background: #069;
+  text-align: center;
+  line-height: 50px;
+  font-weight: bold;
+  color: #FFF;
+  margin-top: 10px;
+}
+
+.messages {
+  width: 600px;
+  height: 400px;
+  margin: 20px 0;
+  border: 1px solid #ddd;
+  padding: 20px;
+}
+    </style>
+    <!-- JavaScript (Opcional) -->
+    <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>

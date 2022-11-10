@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+  
+    <!-- Meta tags Obrigatórias -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <title>Restaurante</title>
+   
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="/">Restaurante</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="/produtos">Produtos <span class="sr-only">(página atual)</span></a>
+                  </li>
+
+                  <li class="nav-item active">
+                    <a class="nav-link" href="/pedidos">Pedidos <span class="sr-only">(página atual)</span></a>
+                  </li>
+
+                  <li class="nav-item active">
+                    <a class="nav-link" href="/comentarios">Comentarios <span class="sr-only">(current)</span></a>
+                  </li>
+
+                  <li class="nav-item active">
+                    <a class="nav-link" href="/reserva_messa">Reserva <span class="sr-only">(current)</span></a>
+                  </li>
+        </ul>
+       
+       
+      </div>
+    </nav>
+
+    
+
+    <div id="slider">
+      <img class="secleted" id="img1" src="https://www.revistabula.com/wp/wp-content/uploads/2019/06/coxinha-610x350.jpg" alt="Cochinha">
+      <img id="img2" src="https://www.penaestrada.blog.br/wp-content/uploads/2020/12/IMG_9595.jpg" alt="">
+      <img id="img3" src="https://a.cdn-hotels.com/gdcs/production101/d809/aa4c6796-747a-4fbf-8b76-f90d6252dfa2.jpg?impolicy=fcrop&w=800&h=533&q=medium" alt="">
+    </div>
+    <!-- As a link -->
+    <p>Nossas Filiais</p>
+
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div id="cards" class="card" style="width: 18rem;">
+          <img class="card-img-top" src="https://i.pinimg.com/564x/b8/bd/dd/b8bdddabafd4892124d854dfecdb4a63.jpg">
+          <div class="card-body">
+            <h5 class="card-title">Cafe<br>Shoping</h5>
+            <a href="#" class="btn btn-primary">Acesse</a>
+          </div>
+          
+        </div>
+      </div>
+      <div id="cards" class="card" style="width: 18rem;">
+        <img class="card-img-top" src="https://s2.glbimg.com/-yrKP7GE3kIBTzYijK0j9QOOZUE=/0x0:1280x800/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_1f540e0b94d8437dbbc39d567a1dee68/internal_photos/bs/2022/d/7/RxvFjETBGwRGM0a0yA4g/cachorro-quente.jpg">
+        <div class="card-body">
+          <h5 class="card-title"><h5>Your <br>Hot Dog</h5>
+          <a href="#" class="btn btn-primary">Acesse</a>
+        </div>
+        
+      </div>
+      
+    </div>
+  </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modal_Pedido" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Alerta</h5><br><br>
+        </div>
+        <p>Seu pedido foi salvo com susseso agora é só aguardar um pouco.</p><br>
+          <hr>
+        <button type="submit" class="btn btn-success" onclick="foifechado_o_modal()">Cocluir</button>
+      </div>
+     
+    </div>
+  </div>
+ 
+  
+
+
+    <script>
+      let imagematual = 0 , imagens , i;
+
+      imagens = document.querySelectorAll("#slider img");
+
+      setInterval(function () {
+     
+     console.log(imagens[imagematual]);
+        
+        imagens[imagematual].classList.remove("secleted");
+        imagematual++;
+        imagens[imagematual].classList.add("secleted");
+        
+      if(imagematual == 2)
+      imagematual = 0;
+    
+   
+     }, 3000);
+       
+        //for(let i =0; i>=2; i++)
+       
+      function nextImage(){
+        setInterval(function () {
+     
+     console.log(imagens[imagematual]);
+        
+        imagens[imagematual].classList.remove("secleted");
+        imagematual++;
+        imagens[imagematual].classList.add("secleted");
+        
+      if(imagematual == 2)
+      imagematual = 0;
+    
+   
+     }, 3000);
+      }
+      //Fazer com que uma imagens fique por 1 milesegundo depois eu faço ela desapareser e chamoo a outra com id dela
+    window.addEventListener("load" , inicio);// isso chama uma função
+
+    </script>
+    
+    <style>
+      body{
+        background-color: aqua;
+      }
+      body
+     {
+    text-align: center;
+     }
+     #slider{
+      width: 500%;
+      height: 25vw;
+      max-width: 500px;
+      position: relative;
+      max-height: 150%;
+     }
+     #slider img{
+      position: absolute;
+      width: 200%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 800ms;
+     }
+    #slider img.secleted{
+      opacity: 1;
+    }
+     p{
+      text-align: center;
+      background-color: aliceblue;
+      font-size: 30px;
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+     }
+    </style>
+    <!-- JavaScript (Opcional) -->
+    <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>
