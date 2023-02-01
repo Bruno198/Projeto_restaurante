@@ -11,8 +11,8 @@ class reserva_messa extends Model {
     }, { sequelize: connection, timestamps: false });
   }
  static associate(models){
-   // this.hasMany(models.Pedidos, {foreignKey: "id_produtos", as: "pedidos"});
-    this.belongsTo(models.Pedidos, {foreignKey:"id_messa", as: "pedidos"})
+    this.belongsTo(models.Pedidos, {foreignKey: "id_pedidos", as: "pedidos"});
+  //  this.belongsTo(models.Pedidos, {foreignKey:"id_messa", as: "pedidos"})
   }//hasMany
   //belongsTo
 

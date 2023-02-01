@@ -37,8 +37,7 @@
                     <a class="nav-link" href="/reserva_messa">Reserva <span class="sr-only">(current)</span></a>
                   </li>
         </ul>
-       
-       
+        <button type="submit" class="btn btn-success" onclick="pagina_login()">Adimistrativo</button>
       </div>
     </nav>
 
@@ -93,13 +92,12 @@
   </div>
  
   
+  
 
 
     <script>
       let imagematual = 0 , imagens , i;
-
       imagens = document.querySelectorAll("#slider img");
-
       setInterval(function () {
      
      console.log(imagens[imagematual]);
@@ -134,6 +132,9 @@
       //Fazer com que uma imagens fique por 1 milesegundo depois eu faço ela desapareser e chamoo a outra com id dela
     window.addEventListener("load" , inicio);// isso chama uma função
 
+    function pagina_login (){
+      window.location.href = "http://localhost:8080/login";
+    }
     </script>
     
     <style>

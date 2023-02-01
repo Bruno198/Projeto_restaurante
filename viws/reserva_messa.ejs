@@ -35,25 +35,19 @@
                   </li>
         </ul>
 
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar Reservas" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
-        </form>
-
       </div>
     </nav>
     <div  class="container">
       <h3>Faça sua Reserva aqui</h3>
 
-
-      
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="/">Restaurante</a></li>
           <li class="breadcrumb-item active" aria-current="page">Reserva</li>
         </ol>
       </nav>
-      
+    
+
       <form action="salvarReservas" method="post">
         <div class="form-group">
           <label for="exampleInputEmail1">Realizazar Reserva por:</label>
@@ -65,9 +59,33 @@
           <input type="text" class="form-control" id="messa_para_ser_reservada" placeholder="Iforme a Messa para Efetuar A Reserva">
         </div>
 
-        <button type="submit" class="btn btn-primary">Salvar Reserva</button>
+        <button type="submit" class="btn btn-primary" onclick="verificar_messas()">Salvar Reserva</button>
       </form>
-    </div>
+
+      <% if (listmessa.length  > 0) {%>
+        <h5>Messas Não Diponiveis</h5>
+      <ul class="list-group">
+        <% listmessa.forEach( element => {%>
+            <li ><%="Messa " +  element.messa %> </li>
+        <% });%>   
+        <% }%>
+        </ul>
+        
+    </div>  
+
+
+   
+
+    <script>
+      function verificar_messas(element){
+        let messa_resevada = document.getElementById("messa_para_ser_reservada");
+        for(let i = 0; listmessa.length; i++)
+        {
+          if(messa_resevada == element.messa)
+          alert("Está Messa selecionada está sendo utilizada");
+        }
+      }
+    </script>
 
     <style>
       body{

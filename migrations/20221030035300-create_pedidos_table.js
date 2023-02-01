@@ -31,6 +31,8 @@ module.exports = {
           }
         } ,
 
+      
+
       messa: {
         type: Sequelize.INTEGER ,
       },

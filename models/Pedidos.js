@@ -13,7 +13,7 @@ class Pedidos extends Model {
    static associate(models){
     //this.belongsTo(models.Produtos, {foreignKey: "id_produtos", as: "produtos"});
     this.belongsToMany(models.Produtos, {foreignKey:"id_produtos", through: "produtos_pedidos",as: "produtos"})
-    this.belongsTo(models.reserva_messa, {foreignKey:"id_messa", as: "reserva_messa"})
+    this.hasOne(models.reserva_messa, {foreignKey:"id_messa", as: "reserva_messaeroo qqui"})
   }
 };
 

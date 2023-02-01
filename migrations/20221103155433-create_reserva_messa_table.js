@@ -2,7 +2,7 @@
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('reserva_messa', {
+    await queryInterface.createTable('reserva_messas', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -32,6 +32,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    queryInterface.dropTable('reserva_messa');
+    queryInterface.dropTable('reserva_messas');
   }
 };

@@ -57,12 +57,12 @@
 
             <label for="pedidos">Sua Messa É:</label>
          
-            <input type="number" class="form-control" name="messa" id="messa"  placeholder="Informe o numero de sua Messa">
+            <input type="number" class="form-control" name="messadojs" id="messa"  placeholder="Informe o numero de sua Messa">
              
           <label for="data">Seleção de Pedidos:</label><br>
           <select name="id_pedidos" id="id_pedidos" multiple>
             <% listProdutos.forEach( element => {%>
-            <option value="<%= element.id%>"><%= element.nome_do_produto %> <option value="<%= element.id%>"> <%= element.valor_do_produto%></option><!--Faz essa mesma coisa para mostra no index  mas eu tenho q relacionar categoria para lancamentos-->
+            <option id="valor_do_produto" value="<%= element.id%>"> <%= element.valor_do_produto%></option><!--Faz essa mesma coisa para mostra no index  mas eu tenho q relacionar categoria para lancamentos-->
             <option>-------------</option>
             <% });%>
           </select>
@@ -70,27 +70,35 @@
         </div>
         <label for="pedidos">Preferencia:</label>
         <div class="form-group">
-            <textarea id="preferencias" name="preferencias"rows="5" cols="50"  placeholder=" Descreva Algums Complementos ou preferencias que voçe queira no Pedido."></textarea><br><br>
-          
-        </div>
-      
-        <div class="form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">Check me out</label>
+            <textarea id="preferencias" name="preferencias"rows="5" cols="50"  placeholder=" Descreva Algums Complementos ou preferencias que voçe queira no Pedido."></textarea><br>
         </div>
         <button type="submit" class="btn btn-primary" onclick="abrir_modal()">Salvar Pedido</button>
+        <button type="submit" class="btn btn-primary" onclick="abrir_alert()">Abrir Alerte</button>
       </form>
     </div>
 
     <script>
-
+      // Assim pega o valor de um input
+      var input = document.getElementById("nome_da_pessoa").value;
+      var texto = input.value;
+      console.log(texto);
+      function abrir_alert(texto){
+        alert(texto);
+      }
+       
+        
       function abrir_modal (){
         $('#modal_Pedido').modal('show')
        /* $('#modal_Pedido').modal({
           nome: nome_da_pessoa ,
           })esse modal abre com obejetos posso color os dado por obejeto*/
-          setInterval(abrir_modal , 3000);
+          setInterval(abrir_modal , 9000);
         window.location.href = "http://localhost:8080/";
+        let valor_total = document.getElementById("valor_do_produto");
+        for(let i = 0; listProdutos.length; i++)
+        valor_total = valor_total + valor_total;
+      //   let nome_pessoa = document.getElementsByName("nome_da_pessoa");
+        // alert("Pedido por : " + nome_pessoa);
       }
 
 
@@ -99,23 +107,30 @@
         fechou = 1;
         if(fechou == 1)
         window.location.href = "http://localhost:8080/";
+       // alert(input.value);
         
         }
     </script>
-
     <div class="modal fade" id="modal_Pedido" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Alerta</h5><br><br>
+        <h5 class="modal-title" id="exampleModalLabel">ALERTA DE MESSA <%=data_vetor[1]%></h5><br><br>
       </div>
-      <p>Seu pedido foi salvo com susseso agora é só aguardar um pouco.</p><br>
+      <p>Pedido dá Messa <%=data_vetor[1]%> seu pedido está pronto Vamos entregalo</p><br>
+      <p>Pedido Por : <%=data_vetor[0]%></p>
+      <p>Messa : <%=data_vetor[1]%></p>
+      <p>Preferencias : <%=data_vetor[2]%></p>
+    <!-- <% listProdutos.forEach( element => {%>
+      <p>Valor Total De :<%= element.valor_do_produto = element.valor_do_produto + element.valor_do_produto%></p>
+      <% });%>--> 
         <hr>
       <button type="submit" class="btn btn-success" onclick="foifechado_o_modal()">Cocluir</button>
     </div>
    
   </div>
 </div>
+
     
     <style>
        body{
